@@ -68,7 +68,7 @@ public class WebTableSteps {
             .map(Row::values)
             .collect(Collectors.toList());
         verifyTableContainsExactlyFollowingData(
-            WebSteps.getCurrentSetting().getHtmlRenderer(),
+            WebHandler.getCurrentSetting().getHtmlRenderer(),
             page,
             tableName,
             expectedTableData,
@@ -81,7 +81,7 @@ public class WebTableSteps {
             .map(Row::values)
             .collect(Collectors.toList());
         verifyTableContainsFollowingDataInSpecifiedRow(
-            WebSteps.getCurrentSetting().getHtmlRenderer(),
+            WebHandler.getCurrentSetting().getHtmlRenderer(),
             page,
             tableName,
             expectedTableData.get(0),
@@ -94,7 +94,7 @@ public class WebTableSteps {
             .map(Row::values)
             .collect(Collectors.toList());
         verifyTableContainsFollowingDataInSpecifiedRows(
-            WebSteps.getCurrentSetting().getHtmlRenderer(),
+            WebHandler.getCurrentSetting().getHtmlRenderer(),
             page,
             tableName,
             expectedTableData,
@@ -108,7 +108,7 @@ public class WebTableSteps {
             .map(Row::values)
             .collect(Collectors.toList());
         verifyTableContainsAtLeastFollowingData(
-            WebSteps.getCurrentSetting().getHtmlRenderer(),
+            WebHandler.getCurrentSetting().getHtmlRenderer(),
             page,
             tableName,
             expectedTableData);
@@ -120,7 +120,7 @@ public class WebTableSteps {
             .map(Row::values)
             .collect(Collectors.toList());
         verifyTableContainsExactlyFollowingData(
-            WebSteps.getCurrentSetting().getHtmlRenderer(),
+            WebHandler.getCurrentSetting().getHtmlRenderer(),
             page,
             tableName,
             expectedTableData,

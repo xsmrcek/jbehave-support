@@ -7,6 +7,7 @@ import org.jbehavesupport.core.internal.TestContextImpl;
 import org.jbehavesupport.core.internal.expression.ExpressionEvaluatorImpl;
 import org.jbehavesupport.core.internal.parameterconverters.ExamplesEvaluationTableConverter;
 import org.jbehavesupport.core.internal.verification.VerifierResolverImpl;
+import org.jbehavesupport.core.internal.web.GivenStoryHelper;
 import org.jbehavesupport.core.internal.web.WebElementLocatorImpl;
 import org.jbehavesupport.core.internal.web.WebElementRegistryImpl;
 import org.jbehavesupport.core.internal.web.action.WebActionBuilderImpl;
@@ -30,6 +31,7 @@ import org.jbehavesupport.core.web.WebDriverFactory;
 import org.jbehavesupport.core.web.WebDriverFactoryResolver;
 import org.jbehavesupport.core.web.WebElementLocator;
 import org.jbehavesupport.core.web.WebElementRegistry;
+import org.jbehavesupport.core.web.WebHandler;
 import org.jbehavesupport.core.web.WebProperty;
 import org.jbehavesupport.core.web.WebPropertyResolver;
 import org.jbehavesupport.core.web.WebWaitCondition;
@@ -37,6 +39,7 @@ import org.jbehavesupport.core.web.WebWaitConditionResolver;
 import org.openqa.selenium.WebDriver;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -115,6 +118,18 @@ public class JBehaveDefaultConfig {
     public SshHandler testSshHandler(TestContext testContext, ConfigurableListableBeanFactory beanFactory,
                                      ExamplesEvaluationTableConverter tableConverter, VerifierResolver verifierResolver) {
         return new SshHandler(testContext, beanFactory, tableConverter, verifierResolver);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(WebHandler.class)
+    public WebHandler testWebHandler(ConfigurableListableBeanFactory beanFactory, TestContext testContext, WebDriver driver,
+                                     WebActionResolver actionResolver, WebPropertyResolver propertyResolver,
+                                     WebWaitConditionResolver waitConditionResolver, VerifierResolver verifierResolver,
+                                     GivenStoryHelper storyHelper, WebDriverFactoryResolver driverFactoryResolver,
+                                     WebElementRegistry elementRegistry, ApplicationEventPublisher eventPublisher
+    ) {
+        return new WebHandler(beanFactory, testContext, driver, actionResolver, propertyResolver, waitConditionResolver,
+            verifierResolver, storyHelper, elementRegistry, driverFactoryResolver, eventPublisher);
     }
 
     @Bean
