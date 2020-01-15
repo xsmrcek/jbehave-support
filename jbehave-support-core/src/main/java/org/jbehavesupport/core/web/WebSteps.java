@@ -9,52 +9,59 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
+import org.jbehavesupport.core.web.handlers.WebActionHandler;
+import org.jbehavesupport.core.web.handlers.WebNavigationHandler;
+import org.jbehavesupport.core.web.handlers.WebOthersHandler;
+import org.jbehavesupport.core.web.handlers.WebPropertyHandler;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public final class WebSteps {
 
-    private final WebHandler webHandler;
+    private final WebNavigationHandler webNavigationHandler;
+    private final WebPropertyHandler webPropertyHandler;
+    private final WebActionHandler webActionHandler;
+    private final WebOthersHandler webOthersHandler;
 
     @Given("[$url] url is open")
     @When("[$url] url is open")
     public void openUrl(ExpressionEvaluatingParameter<String> url) {
-        webHandler.openUrl(url);
+        webNavigationHandler.openUrl(url);
     }
 
     @Given("[$application] homepage is open")
     @When("[$application] homepage is open")
     public void openHomePage(String application) {
-        webHandler.openHomePage(application);
+        webNavigationHandler.openHomePage(application);
     }
 
     @Given(value = "[$application]/[$path] url is open", priority = 100)
     @When(value = "[$application]/[$path] url is open", priority = 100)
     public void openUrl(String application, ExpressionEvaluatingParameter<String> pathExpression) {
-        webHandler.openUrl(application, pathExpression);
+        webNavigationHandler.openUrl(application, pathExpression);
     }
 
     @Given("[$application]/[$path] url is open with query parameters:$queryParameters")
     @When("[$application]/[$path] url is open with query parameters:$queryParameters")
     public void openUrl(String application, String path, ExamplesTable queryParameters) throws URISyntaxException {
-        webHandler.openUrl(application, path, queryParameters);
+        webNavigationHandler.openUrl(application, path, queryParameters);
     }
 
     @When("on [$page] page these actions are performed:$actionTable")
     public void performActions(String page, ExamplesTable actionTable) {
-        webHandler.performActions(page, actionTable);
+        webActionHandler.performActions(page, actionTable);
     }
 
     @Given("on [$page] page these values are saved:$table")
     @Then("on [$page] page these values are saved:$table")
     public void storePropertiesInContext(String page, ExamplesTable table) {
-        webHandler.storePropertiesInContext(page, table);
+        webPropertyHandler.storePropertiesInContext(page, table);
     }
 
     @Then("on [$page] page these conditions are verified:$table")
     public void verifyProperties(String page, ExamplesTable table) {
-        webHandler.verifyProperties(page, table);
+        webPropertyHandler.verifyProperties(page, table);
     }
 
     /**
@@ -74,7 +81,7 @@ public final class WebSteps {
      */
     @Then("on [$page] page wait until [$element] $condition")
     public void waitUntilCondition(String page, String element, ExpressionEvaluatingParameter<String> condition) {
-        webHandler.waitUntilCondition(page, element, condition);
+        webOthersHandler.waitUntilCondition(page, element, condition);
     }
 
     /**
@@ -85,64 +92,64 @@ public final class WebSteps {
     @Deprecated
     @Then("new tab is opened and focused")
     public void switchToNewTab() {
-        webHandler.switchToNewTab();
+        webNavigationHandler.switchToNewTab();
     }
 
     @Given("open and focus new tab")
     @Then("open and focus new tab")
     public void openAndFocusNewTab() {
-        webHandler.openAndFocusNewTab();
+        webNavigationHandler.openAndFocusNewTab();
     }
 
     @Given("tab with [$urlTitle] containing [$text] is focused")
     @Then("tab with [$urlTitle] containing [$text] is focused")
     public void findTabWithUrlOrTitle(String urlTitle, ExpressionEvaluatingParameter<String> text) {
-        webHandler.findTabWithUrlOrTitle(urlTitle, text);
+        webNavigationHandler.findTabWithUrlOrTitle(urlTitle, text);
     }
 
     @Given("on page [$page] frame [$frame] is focused")
     @Then("on page [$page] frame [$frame] is focused")
     public void focusNamedFrame(ExpressionEvaluatingParameter<String> page, ExpressionEvaluatingParameter<String> frame) {
-        webHandler.focusNamedFrame(page, frame);
+        webNavigationHandler.focusNamedFrame(page, frame);
     }
 
     @Given("main frame is focused")
     @Then("main frame is focused")
     public void focusMainFrame() {
-        webHandler.focusMainFrame();
+        webNavigationHandler.focusMainFrame();
     }
 
     @When("current tab is closed")
     public void closeTab() {
-        webHandler.closeTab();
+        webNavigationHandler.closeTab();
     }
 
     @Given("browser is closed")
     public void closeBrowser() {
-        webHandler.closeBrowser();
+        webNavigationHandler.closeBrowser();
     }
 
     @When("navigated back")
     @Then("navigate back")
     public void navigateBack() {
-        webHandler.navigateBack();
+        webNavigationHandler.navigateBack();
     }
 
     @When("navigated forward")
     @Then("navigate forward")
     public void navigateForward() {
-        webHandler.navigateForward();
+        webNavigationHandler.navigateForward();
     }
 
     @When("screenshot is taken")
     @Then("screenshot is taken")
     public void takeScreenShot(){
-        webHandler.takeScreenShot();
+        webOthersHandler.takeScreenShot();
     }
 
     @When("browser is changed to [$browserName]")
     @Given("browser is changed to [$browserName]")
     public void changeBrowser(String browserName) {
-        webHandler.changeBrowser(browserName);
+        webNavigationHandler.changeBrowser(browserName);
     }
 }

@@ -31,7 +31,8 @@ import org.jbehavesupport.core.web.WebDriverFactory;
 import org.jbehavesupport.core.web.WebDriverFactoryResolver;
 import org.jbehavesupport.core.web.WebElementLocator;
 import org.jbehavesupport.core.web.WebElementRegistry;
-import org.jbehavesupport.core.web.WebHandler;
+import org.jbehavesupport.core.web.handlers.WebPropertyHandler;
+import org.jbehavesupport.core.web.handlers.WebNavigationHandler;
 import org.jbehavesupport.core.web.WebProperty;
 import org.jbehavesupport.core.web.WebPropertyResolver;
 import org.jbehavesupport.core.web.WebWaitCondition;
@@ -121,15 +122,22 @@ public class JBehaveDefaultConfig {
     }
 
     @Bean
-    @ConditionalOnMissingBean(WebHandler.class)
-    public WebHandler testWebHandler(ConfigurableListableBeanFactory beanFactory, TestContext testContext, WebDriver driver,
-                                     WebActionResolver actionResolver, WebPropertyResolver propertyResolver,
-                                     WebWaitConditionResolver waitConditionResolver, VerifierResolver verifierResolver,
-                                     GivenStoryHelper storyHelper, WebDriverFactoryResolver driverFactoryResolver,
-                                     WebElementRegistry elementRegistry, ApplicationEventPublisher eventPublisher
+    @ConditionalOnMissingBean(WebNavigationHandler.class)
+    public WebNavigationHandler testWebStepsHandler(ConfigurableListableBeanFactory beanFactory, WebDriver driver,
+                                                    WebActionResolver actionResolver,
+                                                    WebWaitConditionResolver waitConditionResolver,
+                                                    GivenStoryHelper storyHelper, WebDriverFactoryResolver driverFactoryResolver,
+                                                    WebElementRegistry elementRegistry, ApplicationEventPublisher eventPublisher
     ) {
-        return new WebHandler(beanFactory, testContext, driver, actionResolver, propertyResolver, waitConditionResolver,
-            verifierResolver, storyHelper, elementRegistry, driverFactoryResolver, eventPublisher);
+        return new WebNavigationHandler(beanFactory, driver, actionResolver, waitConditionResolver,
+            storyHelper, elementRegistry, driverFactoryResolver, eventPublisher);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(WebPropertyHandler.class)
+    public WebPropertyHandler testWebPropertyHandler(ApplicationEventPublisher eventPublisher, VerifierResolver verifierResolver,
+                                                    TestContext testContext, WebPropertyResolver propertyResolver){
+        return new WebPropertyHandler(eventPublisher, verifierResolver, testContext, propertyResolver);
     }
 
     @Bean

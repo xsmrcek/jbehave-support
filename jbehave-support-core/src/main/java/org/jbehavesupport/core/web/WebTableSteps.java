@@ -19,6 +19,7 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.core.steps.Row;
+import org.jbehavesupport.core.web.handlers.WebNavigationHandler;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -68,7 +69,7 @@ public class WebTableSteps {
             .map(Row::values)
             .collect(Collectors.toList());
         verifyTableContainsExactlyFollowingData(
-            WebHandler.getCurrentSetting().getHtmlRenderer(),
+            WebNavigationHandler.getCurrentSetting().getHtmlRenderer(),
             page,
             tableName,
             expectedTableData,
@@ -81,7 +82,7 @@ public class WebTableSteps {
             .map(Row::values)
             .collect(Collectors.toList());
         verifyTableContainsFollowingDataInSpecifiedRow(
-            WebHandler.getCurrentSetting().getHtmlRenderer(),
+            WebNavigationHandler.getCurrentSetting().getHtmlRenderer(),
             page,
             tableName,
             expectedTableData.get(0),
@@ -94,7 +95,7 @@ public class WebTableSteps {
             .map(Row::values)
             .collect(Collectors.toList());
         verifyTableContainsFollowingDataInSpecifiedRows(
-            WebHandler.getCurrentSetting().getHtmlRenderer(),
+            WebNavigationHandler.getCurrentSetting().getHtmlRenderer(),
             page,
             tableName,
             expectedTableData,
@@ -108,7 +109,7 @@ public class WebTableSteps {
             .map(Row::values)
             .collect(Collectors.toList());
         verifyTableContainsAtLeastFollowingData(
-            WebHandler.getCurrentSetting().getHtmlRenderer(),
+            WebNavigationHandler.getCurrentSetting().getHtmlRenderer(),
             page,
             tableName,
             expectedTableData);
@@ -120,7 +121,7 @@ public class WebTableSteps {
             .map(Row::values)
             .collect(Collectors.toList());
         verifyTableContainsExactlyFollowingData(
-            WebHandler.getCurrentSetting().getHtmlRenderer(),
+            WebNavigationHandler.getCurrentSetting().getHtmlRenderer(),
             page,
             tableName,
             expectedTableData,

@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import org.jbehavesupport.core.web.WebElementLocator;
 import org.jbehavesupport.core.web.WebElementRegistry;
-import org.jbehavesupport.core.web.WebHandler;
+import org.jbehavesupport.core.web.handlers.WebNavigationHandler;
 import org.jbehavesupport.core.web.WebSetting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -44,7 +44,7 @@ public class WebElementLocatorImpl implements WebElementLocator {
     }
 
     private void waitForCustomCondition() {
-        WebSetting currentSetting = WebHandler.getCurrentSetting();
+        WebSetting currentSetting = WebNavigationHandler.getCurrentSetting();
         if (currentSetting != null) {
             Consumer<WebDriver> waitForLoad = currentSetting.getWaitForLoad();
             if (waitForLoad != null) {
