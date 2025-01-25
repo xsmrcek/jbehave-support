@@ -98,6 +98,13 @@ public final class WebSteps {
         CURRENT_SETTING.remove();
     }
 
+    @Given("execution waits for $waitTime seconds")
+    @When("execution waits for $waitTime seconds")
+    @Then("execution waits for $waitTime seconds")
+    public void waitForSeconds(ExpressionEvaluatingParameter<String>  waitTime) throws InterruptedException {
+        Thread.sleep(Long.parseLong(waitTime.getValue()) );
+    }
+
     @Given("[$url] url is open")
     @When("[$url] url is open")
     public void openUrl(ExpressionEvaluatingParameter<String> url) {

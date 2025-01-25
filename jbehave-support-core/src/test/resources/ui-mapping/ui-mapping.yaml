@@ -14,3 +14,7 @@ frames:
  thirdFrame: "*[title='thirdFrame']"
  numberOfFrame: "*[data-selector='number']"
 
+vote:
+  lili: "#denik > div.page > div.content-new.lg\\:mb-2.js-Lazyloading-ready > div.layout__row.section-base > div.layout__left.flex.flex-col.gap-6 > main > div.article-content.article-body.max-w-\\[630px\\].bbtext.js-Readability-ready > div.survey-component.js-survey.js-Survey-ready > div > div.survey__content > div > div:nth-child(13) > div.survey__answer-content > button"
+  #lili: "//*[@id=\"denik\"]/div[3]/div[2]/div[5]/div[1]/main/div[4]/div[3]/div/div[2]/div/div[13]/div[2]/button"
+  souhlas: "#didomi-notice-agree-button"

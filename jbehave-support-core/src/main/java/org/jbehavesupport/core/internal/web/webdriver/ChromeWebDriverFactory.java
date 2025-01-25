@@ -16,7 +16,7 @@ public class ChromeWebDriverFactory implements WebDriverFactory {
 
     private static final String NAME = "chrome";
 
-    @Value("${web.timeout:10}")
+    @Value("${web.timeout:30}")
     private int timeout;
 
     @Value("${web.browser.driver.location:#{null}}")
