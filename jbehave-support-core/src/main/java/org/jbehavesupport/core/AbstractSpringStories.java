@@ -50,7 +50,7 @@ public abstract class AbstractSpringStories extends JUnit5Stories {
     public static final String JBEHAVE_SCENARIO = "jbehave_scenario";
 
     private static final String CUSTOM_MATCHER = "custom";
-    private static final Long STORY_TIMEOUTS = 600000L;
+    private static final Long STORY_TIMEOUTS = 6000000L;
 
     private static final String DOT_REGEXP = "\\.";
     private static final String SLASH = "/";
