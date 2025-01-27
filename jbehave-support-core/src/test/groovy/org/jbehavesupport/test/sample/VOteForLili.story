@@ -29,6 +29,25 @@ When on [vote] page these actions are performed:
 
 Then execution waits for {CP:ASD} seconds
 
+Given [https://sumpersky.denik.cz/fotbal_region/anketa-vyberte-kanonyra-okresu-tohle-jsou-ti-nejlepsi-na-sumpersku-a-jesenicku-2.html?login=1] url is open
+
+Then execution waits for 12 seconds
+
+When on [vote] page these actions are performed:
+| element | action | data                           |
+| martin  | SCROLL_ON   |                                |
+
+Then execution waits for 3 seconds
+
+Then on [vote] page wait until [martin] is clickable
+
+When on [vote] page these actions are performed:
+| element | action | data                           |
+| martin  | CLICK   |                                |
+| martin  | CLICK   |
+
+Then execution waits for 5956 seconds
+
 Examples:
 | value_A |
 | 305120 |
