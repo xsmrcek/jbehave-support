@@ -249,18 +249,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jbehavesupport</groupId>
-            <artifactId>jbehave-support-core-test-oxm</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jbehavesupport</groupId>
-            <artifactId>jbehave-support-core-test-app-domain</artifactId>
-            <version>${project.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <scope>test</scope>

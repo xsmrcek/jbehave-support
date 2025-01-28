@@ -17,7 +17,6 @@ import org.jbehavesupport.core.support.YamlPropertySourceFactory;
 import org.jbehavesupport.core.web.WebDriverFactory;
 import org.jbehavesupport.core.web.WebSetting;
 import org.jbehavesupport.core.ws.WebServiceHandler;
-import org.jbehavesupport.test.support.TestWebServiceHandler;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -59,12 +58,6 @@ public class TestConfiguration {
     private final Environment env;
 
     final ResourceLoader resourceLoader;
-
-    @Bean
-    @Qualifier("TEST")
-    public WebServiceHandler testWebServiceHandler() {
-        return new TestWebServiceHandler(env);
-    }
 
     @Bean
     @Qualifier("TEST")

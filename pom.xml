@@ -92,7 +92,6 @@
     </properties>
 
     <modules>
-        <module>jbehave-support-core-test</module>
         <module>jbehave-support-core</module>
     </modules>
 
@@ -174,11 +173,6 @@
                 <groupId>com.hierynomus</groupId>
                 <artifactId>sshj</artifactId>
                 <version>${version.sshj}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jbehavesupport</groupId>
-                <artifactId>jbehave-support-core-test-oxm</artifactId>
-                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
